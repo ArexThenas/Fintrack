@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#151d32" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="FinTrack is a personal finance dashboard to manage income, expenses, budgets, debts and UPI payments."
+    />
+    <!-- This is a private, local app: keep it out of search engines. -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>FinTrack | Smart Personal Finance</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts (loaded here so they download in parallel with the app) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+
+    <!-- Apply the saved theme before first paint to avoid a light-mode flash. -->
+    <script>
+      (function () {
+        try {
+          var settings = JSON.parse(localStorage.getItem('fintrack_settings') || '{}');
+          var dark =
+            settings.theme === 'dark' ||
+            (settings.theme === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        } catch (error) {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <noscript>
+      <div style="padding: 24px; text-align: center; font-family: sans-serif">
+        <h1>JavaScript is required</h1>
+        <p>Please enable JavaScript to use FinTrack.</p>
+      </div>
+    </noscript>
+
+    <!-- React mounts here; the placeholder shows until it loads. -->
+    <div id="root">
+      <div
+        style="
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: sans-serif;
+          color: #68758a;
+        "
+      >
+        Preparing your financial dashboard...
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

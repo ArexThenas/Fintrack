@@ -1,0 +1,555 @@
+/* ============================================================
+   PAGES — dashboard, transactions, budget, debt, settings
+   ============================================================ */
+
+/* ---------- Dashboard ---------- */
+
+.dashboard-page,
+.transactions-page,
+.budget-page,
+.debt-page,
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.dashboard-welcome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dashboard-welcome h1 {
+  font-size: 30px;
+}
+
+.dashboard-welcome p {
+  margin-top: 6px;
+  color: var(--text-secondary);
+}
+
+.dashboard-welcome__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.dashboard-stats,
+.transactions-summary,
+.budget-summary-grid,
+.debt-summary-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.dashboard-stats,
+.budget-summary-grid,
+.debt-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.transactions-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.dashboard-lower-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.dashboard-panel {
+  min-width: 0;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Panels that wrap a self-contained chart card. */
+.dashboard-panel--bare {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.dashboard-panel--transactions .transaction-table-card {
+  border: 0;
+  box-shadow: none;
+}
+
+.dashboard-panel--transactions .transaction-table-card__header {
+  display: none;
+}
+
+.dashboard-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dashboard-section-header h2 {
+  font-size: 17px;
+}
+
+.dashboard-section-header p {
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.dashboard-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--primary);
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dashboard-text-link:hover {
+  text-decoration: underline;
+}
+
+.dashboard-budget-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashboard-budget-list .budget-card {
+  box-shadow: none;
+}
+
+.dashboard-empty-state {
+  min-height: 200px;
+}
+
+.dashboard-error {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.dashboard-error h2 {
+  color: var(--text-primary);
+}
+
+/* ---------- Transactions ---------- */
+
+.transactions-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.transactions-toolbar {
+  display: flex;
+  gap: 10px;
+}
+
+.transactions-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  align-items: end;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Budget & debt ---------- */
+
+.budget-section,
+.debt-section {
+  min-width: 0;
+}
+
+.budget-count,
+.debt-count {
+  padding: 5px 12px;
+  color: var(--text-secondary);
+  background: var(--surface-hover);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.budget-grid,
+.debt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+}
+
+.budget-grid__item,
+.debt-grid__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.budget-grid__item > .budget-card,
+.debt-grid__item > .debt-card {
+  flex: 1;
+}
+
+.budget-grid__delete,
+.debt-grid__delete {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 6px;
+  padding: 6px 10px;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--ease), background-color var(--ease);
+}
+
+.budget-grid__delete:hover,
+.debt-grid__delete:hover {
+  color: var(--danger);
+  background: var(--danger-light);
+}
+
+/* ---------- Settings ---------- */
+
+.settings-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-section:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border);
+}
+
+.settings-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.settings-section-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: var(--primary);
+  background: var(--primary-light);
+  border-radius: 13px;
+}
+
+.settings-section-heading h2 {
+  font-size: 16px;
+}
+
+.settings-section-heading p {
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.settings-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.settings-hint {
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.settings-theme-options {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-theme-option {
+  flex: 1;
+  padding: 10px 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--ease);
+}
+
+.settings-theme-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.settings-theme-option:hover {
+  background: var(--surface-hover);
+}
+
+.settings-theme-option.is-selected {
+  color: var(--primary);
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.settings-theme-option:has(input:focus-visible) {
+  outline: 3px solid rgba(67, 97, 238, 0.35);
+  outline-offset: 2px;
+}
+
+.settings-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.settings-toggle-row span {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-toggle-row small {
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.settings-toggle-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.settings-save-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-save-row p {
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.settings-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  color: var(--success);
+  background: var(--success-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.settings-notice-dismiss {
+  margin-left: auto;
+  padding: 0 6px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.settings-data-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.settings-data-stat {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.settings-data-stat span {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.settings-data-stat strong {
+  font-family: var(--font-heading);
+  font-size: 22px;
+}
+
+.settings-data-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.settings-data-action-copy {
+  max-width: 560px;
+}
+
+.settings-data-action-copy p {
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.settings-danger-zone strong {
+  color: var(--danger);
+}
+
+.settings-reset-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-reset-confirm p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--danger);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.settings-privacy-note {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  color: var(--text-secondary);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.settings-privacy-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--success);
+}
+
+.settings-privacy-note strong {
+  color: var(--text-primary);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .dashboard-stats,
+  .budget-summary-grid,
+  .debt-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-charts,
+  .dashboard-lower-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats,
+  .budget-summary-grid,
+  .debt-summary-grid,
+  .transactions-summary,
+  .settings-data-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-welcome h1 {
+    font-size: 25px;
+  }
+
+  .transactions-toolbar {
+    flex-direction: column;
+  }
+
+  .budget-grid,
+  .debt-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-theme-options {
+    flex-wrap: wrap;
+  }
+}

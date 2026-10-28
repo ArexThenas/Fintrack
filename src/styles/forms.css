@@ -1,0 +1,382 @@
+/* ============================================================
+   FORMS & DIALOGS
+   ============================================================ */
+
+/* ---------- Fields ---------- */
+
+.form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.form-field > label,
+.settings-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-field > label svg,
+.form-label svg {
+  color: var(--text-muted);
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+legend.form-label {
+  padding: 0;
+}
+
+.form-label__optional {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.form-field :where(input, select, textarea):not([type='checkbox']):not([type='radio']),
+.form-control,
+.transaction-search input,
+.transaction-sort select,
+.transaction-pagination select {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 13px;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+.form-field :where(input, select, textarea):hover {
+  border-color: var(--text-muted);
+}
+
+.form-field :where(input, select, textarea):focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.12);
+  outline: none;
+}
+
+.form-field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.form-field [aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-grid,
+.transaction-form,
+.budget-form,
+.debt-form,
+.payment-modal__body {
+  min-width: 0;
+}
+
+.transaction-form,
+.budget-form,
+.debt-form,
+.payment-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.form-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  color: var(--danger);
+  background: var(--danger-light);
+  border: 1px solid color-mix(in srgb, var(--danger) 22%, transparent);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.form-hint {
+  padding: 10px 12px;
+  color: var(--text-secondary);
+  background: var(--primary-light);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.form-field > .form-hint {
+  padding: 0;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.form-character-count {
+  align-self: flex-end;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+/* ---------- Transaction form ---------- */
+
+.transaction-form__type-selector {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.transaction-form__type-selector legend {
+  margin-bottom: 8px;
+}
+
+.transaction-type-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.transaction-type-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--ease);
+}
+
+.transaction-type-option:hover {
+  background: var(--surface-hover);
+}
+
+.transaction-type-option.is-active {
+  color: var(--primary);
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.amount-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+.amount-input:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.12);
+}
+
+.amount-input.has-error {
+  border-color: var(--danger);
+}
+
+.amount-input__symbol {
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.form-field .amount-input input {
+  min-height: 52px;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.transaction-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* ---------- Delete confirmation ---------- */
+
+.delete-confirmation {
+  max-width: 440px;
+  text-align: center;
+}
+
+.delete-confirmation__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 16px;
+  color: var(--danger);
+  background: var(--danger-light);
+  border-radius: 18px;
+}
+
+.delete-confirmation p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.delete-confirmation .form-error,
+.delete-confirmation .form-alert {
+  margin-top: 12px;
+}
+
+.delete-confirmation .modal-panel__actions {
+  justify-content: center;
+}
+
+/* ---------- Payment dialog ---------- */
+
+.payment-modal__amount {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+}
+
+.payment-modal__amount-label {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.payment-modal__amount strong {
+  color: var(--primary);
+  font-family: var(--font-heading);
+  font-size: 28px;
+  letter-spacing: -0.04em;
+}
+
+.payment-modal__security,
+.payment-modal__return-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 14px;
+  color: var(--text-secondary);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.payment-modal__security svg {
+  flex-shrink: 0;
+  color: var(--success);
+}
+
+.payment-modal__return-notice {
+  color: var(--warning);
+  background: var(--warning-light);
+  border-color: transparent;
+}
+
+.payment-modal__return-notice svg {
+  flex-shrink: 0;
+}
+
+.payment-modal__return-notice p {
+  color: var(--text-primary);
+}
+
+.payment-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.payment-modal__result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-modal__back {
+  align-self: center;
+  margin-top: 4px;
+  padding: 6px 10px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Repayment dialog ---------- */
+
+.repayment-modal__balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+}
+
+.repayment-modal__balance span {
+  color: var(--text-secondary);
+}
+
+.repayment-modal__balance strong {
+  font-family: var(--font-heading);
+  font-size: 18px;
+}
+
+@media (max-width: 480px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
